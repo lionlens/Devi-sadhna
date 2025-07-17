@@ -1,0 +1,95 @@
+.sadhana-head {
+    width: 100%;
+    background: url("59d41681-4944-48d1-abdb-742cbb34e614.jpeg");
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.sadhana-head h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 1px;
+}
+.devi-img-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.devi-img-container img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s;
+}
+
+.devi-img-container img:hover {
+    transform: scale(1.05);
+}
+.sadhana-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.info-box {
+    background: url(59d41681-4944-48d1-abdb-742cbb34e614.jpeg);
+    backdrop-filter: blur(10px);
+    padding: 15px;
+    border-radius: 12px;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.info-box h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.info-box p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+}
+.done-button-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.done-button-container button {
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background: yellow;
+    color: #6a1b9a;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.done-button-container button:hover {
+    background: darkred;
+}
+
+#send-status {
+    margin-top: 10px;
+    font-size: 14px;
+    color: lightgreen;
+}

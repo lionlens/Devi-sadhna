@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>HTML</title>
+  
+  <!-- HTML -->
+  
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="sadhana-head">
+  <h2> ಲಲಿತಾ ತ್ರಿಪುರ ಸುಂದರಿ ಸಾಧನ </h2>
+</header>
+<div class="devi-img-container">
+  <img src="file_00000000701c622f8dcd8d586de54390.png" alt="Devi Image">
+</div>
+<div class="sadhana-info">
+  <div class="info-box">
+    <h3>📅 Date</h3>
+    <p id="18 July 2025">--</p>
+  </div>
+  <div class="info-box">
+    <h3>🕉️ Mantra</h3>
+    <p>“ಐಂ ಹ್ರೀಂ ಶ್ರೀಂ ಲಲಿತಾ ತ್ರಿಪುರಸುಂದರ್ಯೈ ನಮಃ॥</p>
+  </div>
+  <div class="info-box">
+    <h3>✨  ಧ್ಯಾನ:
+</h3>
+    <p>ಮಂತ್ರ ಜಪದ ನಂತರ, ಕಣ್ಣು ಮುಚ್ಚಿ.
+
+ಲಲಿತಾ ಅಮ್ಮನನ್ನು ಕಮಲದ ಮೇಲೆ ಕುಳಿತಂತೆ ಮನಸ್ಸಿನಲ್ಲಿ ದೃಷ್ಟಿ ಮಾಡಿ.
+
+ನಿಮ್ಮ ಭಕ್ತಿಯ ಪ್ರಾರ್ಥನೆ ಸಲ್ಲಿಸಿ</p>
+  </div>
+</div>
+<div class="done-button-container">
+  <button onclick="sendSadhana()">✅ DONE</button>
+  <p id="send-status"></p>
+</div>
+  <!-- Project -->
+  <script src="main.js"></script>
+</body>
+<script>
+const botToken = "7548203708:AAG7M7Xr3V9GF3m1drr-WhVTtwZRnZizJVQ";
+const chatId = "6981597316";
+
+function sendSadhana() {
+  const date = document.getElementById("todayDate").innerText;
+  const mantra = "ॐ ऐं ह्रीं क्लीं चामुण्डायै विच्चे॥";
+  const kalpana = "Visualize Devi glowing in golden light seated on a lotus, blessing you with inner strength and clarity.";
+
+  const message = `🕉️ *Sadhana Report* 🧘‍♂️\n\n📅 Date: ${date}\n🔁 Mantra: ${mantra}\n✨ Kalpana: ${kalpana}`;
+
+  fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text: message,
+      parse_mode: "Markdown"
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.ok) {
+      document.getElementById("send-status").innerText = "✅ Sent to Telegram!";
+    } else {
+      document.getElementById("send-status").innerText = "❌ Failed: " + data.description;
+    }
+  })
+  .catch(err => {
+    document.getElementById("send-status").innerText = "❌ Error: " + err;
+  });
+}
+</script>
+</html>
